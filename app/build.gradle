@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.alex.planets'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.alex.planets"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -29,6 +29,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'

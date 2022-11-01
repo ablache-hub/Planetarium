@@ -1,16 +1,20 @@
 package com.alex.planets.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alex.planets.MainActivity;
 import com.alex.planets.Planet;
 import com.alex.planets.R;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -27,12 +31,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // Déclarer les elements de la card
         private final TextView textView;
+        private final ImageView imageView;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
 
             textView = (TextView) view.findViewById(R.id.textView);
+            imageView = view.findViewById(R.id.imageView);
         }
 
         public TextView getTextView() {
@@ -58,6 +64,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.textView.setText(planets.get(position).getName());
+        Log.i("test", planets.get(position).getImage());
+        Glide.with(this.context).load(planets.get(position).getImage()).into(viewHolder.imageView);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
