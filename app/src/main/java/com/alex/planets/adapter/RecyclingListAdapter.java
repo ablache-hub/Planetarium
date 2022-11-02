@@ -19,8 +19,8 @@ import java.util.List;
 
 public class RecyclingListAdapter extends RecyclerView.Adapter<RecyclingListAdapter.ViewHolder> {
 
-    private List<Planet> planets;
-    private Context context;
+    private final List<Planet> planets;
+    private final Context context;
 
     public RecyclingListAdapter(List<Planet> planets, Context context) {
         this.planets = planets;
@@ -34,7 +34,6 @@ public class RecyclingListAdapter extends RecyclerView.Adapter<RecyclingListAdap
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
 
             textView = (TextView) view.findViewById(R.id.textView);
             imageView = view.findViewById(R.id.imageView);

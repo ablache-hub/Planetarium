@@ -6,15 +6,12 @@ import android.content.Context;
 import androidx.room.Room;
 
 public class DatabaseClient {
-    private Context context;
     private static DatabaseClient mInstance;
 
     // Objet BDD
-    private AppDatabase appDatabase;
+    private final AppDatabase appDatabase;
 
     private DatabaseClient(Context context) {
-        this.context = context;
-
         // Creation BDD avec le room builder
         appDatabase = Room.databaseBuilder(context, AppDatabase.class, "PlanetApp").build();
     }

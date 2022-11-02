@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.alex.planets.adapter.RecyclingListAdapter;
+import com.alex.planets.database.DatabaseClient;
 import com.alex.planets.models.Planet;
 import com.alex.planets.utils.Utils;
 import com.google.gson.Gson;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         Utils.savePlanet(planets, getApplicationContext());
 
-
+        getPlanets();
 /*        for (int i = 0; i < planets.size(); i++) {
             if (planets.get(i).getAroundPlanet() != null) {
                 Log.i("data", "> Item " + i + "\n" + planets.get(i).getName() + " est un satellite de: " + planets.get(i).getAroundPlanet());
@@ -41,10 +43,38 @@ public class MainActivity extends AppCompatActivity {
             }
         }*/
 
-        RecyclerView recyclerView = findViewById(R.id.rcView);
+/*        RecyclerView recyclerView = findViewById(R.id.rcView);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
         RecyclingListAdapter adapter = new RecyclingListAdapter(planets, MainActivity.this);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
+    }
+
+    private void getPlanets() {
+        class GetPlanets extends AsyncTask<Void, Void, List<Planet>> {
+
+            @Override
+            protected List<Planet> doInBackground(Void... voids) {
+                List<Planet> planetList = DatabaseClient
+                        .getInstance(getApplicationContext())
+                        .getAppDatabase()
+                        .planetDao()
+                        .getAll();
+                return planetList;
+            }
+
+            @Override
+            protected void onPostExecute(List<Planet> planets) {
+                super.onPostExecute(planets);
+                RecyclerView recyclerView = findViewById(R.id.rcView);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+                RecyclingListAdapter adapter = new RecyclingListAdapter(planets, MainActivity.this);
+                recyclerView.setAdapter(adapter);
+            }
+        }
+
+        GetPlanets gp = new GetPlanets();
+        gp.execute();
     }
 }

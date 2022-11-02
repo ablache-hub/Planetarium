@@ -3,7 +3,10 @@ package com.alex.planets.utils;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.alex.planets.MainActivity;
+import com.alex.planets.adapter.RecyclingListAdapter;
 import com.alex.planets.database.DatabaseClient;
 import com.alex.planets.models.Planet;
 
@@ -14,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
+
+    RecyclerView recyclerView;
+
     public static String getJsonFromAssets(Context context, String jsonFile) {
         String jsonInString;
         try {
@@ -66,7 +72,6 @@ public class Utils {
                 return null;
             }
         }
-
         SavePlanet savePlanet = new SavePlanet();
         savePlanet.execute();
     }
