@@ -11,19 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alex.planets.MainActivity;
-import com.alex.planets.Planet;
+import com.alex.planets.models.Planet;
 import com.alex.planets.R;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class RecyclingListAdapter extends RecyclerView.Adapter<RecyclingListAdapter.ViewHolder> {
 
     private List<Planet> planets;
     private Context context;
 
-    public CustomAdapter(List<Planet> planets, Context context) {
+    public RecyclingListAdapter(List<Planet> planets, Context context) {
         this.planets = planets;
         this.context = context;
     }

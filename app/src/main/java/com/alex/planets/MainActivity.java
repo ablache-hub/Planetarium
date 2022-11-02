@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.alex.planets.adapter.CustomAdapter;
+import com.alex.planets.adapter.RecyclingListAdapter;
+import com.alex.planets.models.Planet;
 import com.alex.planets.utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         List<Planet> planets = gson.fromJson(jsonFileString, listUserType);
 
+        Utils.savePlanet(planets, getApplicationContext());
+
+
 /*        for (int i = 0; i < planets.size(); i++) {
             if (planets.get(i).getAroundPlanet() != null) {
                 Log.i("data", "> Item " + i + "\n" + planets.get(i).getName() + " est un satellite de: " + planets.get(i).getAroundPlanet());
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.rcView);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        CustomAdapter adapter = new CustomAdapter(planets, MainActivity.this);
+        RecyclingListAdapter adapter = new RecyclingListAdapter(planets, MainActivity.this);
         recyclerView.setAdapter(adapter);
     }
 }
