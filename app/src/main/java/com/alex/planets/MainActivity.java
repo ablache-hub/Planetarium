@@ -1,14 +1,16 @@
 package com.alex.planets;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.alex.planets.adapter.RecyclingListAdapter;
 import com.alex.planets.database.DatabaseClient;
+import com.alex.planets.database.PlanetDao;
 import com.alex.planets.models.Planet;
 import com.alex.planets.utils.Utils;
 import com.google.gson.Gson;
@@ -23,58 +25,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PlanetDao planetDao = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().planetDao();
 
-        String jsonFileString = Utils.getJsonFromAssets(getApplicationContext(), "solarSystem.json");
+        LiveData<List<Planet>> planetList = planetDao.getAll();
 
-        Gson gson = new Gson();
-        Type listUserType = new TypeToken<List<Planet>>() {
-        }.getType();
-
-        List<Planet> planets = gson.fromJson(jsonFileString, listUserType);
-
-        Utils.savePlanet(planets, getApplicationContext());
-
-        getPlanets();
-/*        for (int i = 0; i < planets.size(); i++) {
-            if (planets.get(i).getAroundPlanet() != null) {
-                Log.i("data", "> Item " + i + "\n" + planets.get(i).getName() + " est un satellite de: " + planets.get(i).getAroundPlanet());
-            } else {
-                Log.i("data", "> Item " + i + "\n" + "Satellites de " + planets.get(i).getName() + ": " + planets.get(i).getMoons());
-            }
-        }*/
-
-/*        RecyclerView recyclerView = findViewById(R.id.rcView);
+        RecyclerView recyclerView = findViewById(R.id.rcView);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-        RecyclingListAdapter adapter = new RecyclingListAdapter(planets, MainActivity.this);
-        recyclerView.setAdapter(adapter);*/
-    }
+        RecyclingListAdapter adapter = new RecyclingListAdapter(null, MainActivity.this);
+        recyclerView.setAdapter(adapter);
 
-    private void getPlanets() {
-        class GetPlanets extends AsyncTask<Void, Void, List<Planet>> {
-
+        planetList.observe(this, new Observer<List<Planet>>() {
             @Override
-            protected List<Planet> doInBackground(Void... voids) {
-                List<Planet> planetList = DatabaseClient
-                        .getInstance(getApplicationContext())
-                        .getAppDatabase()
-                        .planetDao()
-                        .getAll();
-                return planetList;
+            public void onChanged(List<Planet> planets) {
+
+                if (planets.size() == 0) {
+                    Gson gson = new Gson();
+                    Type listUserType = new TypeToken<List<Planet>>() {
+                    }.getType();
+
+                    String jsonFileString = Utils.getJsonToString(getApplicationContext(), "solarSystem.json");
+
+                    List<Planet> planetsFromJson = gson.fromJson(jsonFileString, listUserType);
+
+                    Utils.savePlanet(planetsFromJson, getApplicationContext());
+                } else {
+                    RecyclingListAdapter adapter = new RecyclingListAdapter(planets, MainActivity.this);
+                    recyclerView.setAdapter(adapter);
+                }
+
             }
-
-            @Override
-            protected void onPostExecute(List<Planet> planets) {
-                super.onPostExecute(planets);
-                RecyclerView recyclerView = findViewById(R.id.rcView);
-                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
-                RecyclingListAdapter adapter = new RecyclingListAdapter(planets, MainActivity.this);
-                recyclerView.setAdapter(adapter);
-            }
-        }
-
-        GetPlanets gp = new GetPlanets();
-        gp.execute();
+        });
     }
 }

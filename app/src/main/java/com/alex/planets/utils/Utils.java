@@ -5,8 +5,7 @@ import android.os.AsyncTask;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alex.planets.MainActivity;
-import com.alex.planets.adapter.RecyclingListAdapter;
+import com.alex.planets.R;
 import com.alex.planets.database.DatabaseClient;
 import com.alex.planets.models.Planet;
 
@@ -17,25 +16,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
-
-    RecyclerView recyclerView;
-
-    public static String getJsonFromAssets(Context context, String jsonFile) {
+    public static String getJsonToString(Context context, String jsonFile) {
         String jsonInString;
+
         try {
             InputStream is = context.getAssets().open(jsonFile);
-
             int size = is.available();
             byte[] buffer = new byte[size];
+
             is.read(buffer);
             is.close();
-
             jsonInString = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-
         return jsonInString;
     }
 
@@ -55,7 +50,6 @@ public class Utils {
 
             @Override
             protected Void doInBackground(Void... voids) {
-
                 for (Planet planet : planets) {
                     Planet newPlanet = new Planet();
                     newPlanet.setSearchId(planet.getSearchId());

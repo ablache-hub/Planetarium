@@ -1,5 +1,6 @@
 package com.alex.planets.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -10,10 +11,15 @@ import com.alex.planets.models.Planet;
 
 import java.util.List;
 
+import io.reactivex.Maybe;
+
 @Dao
 public interface PlanetDao {
     @Query("SELECT * FROM planets")
-    List<Planet> getAll();
+    LiveData<List<Planet>> getAll();
+
+    @Query("SELECT * FROM planets WHERE isPlanet=1")
+    List<Planet> getIsPlanet();
 
     @Insert
     void insert(Planet planet);

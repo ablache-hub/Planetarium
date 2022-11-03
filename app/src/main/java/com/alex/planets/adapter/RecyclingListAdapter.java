@@ -62,7 +62,6 @@ public class RecyclingListAdapter extends RecyclerView.Adapter<RecyclingListAdap
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.textView.setText(planets.get(position).getName());
-        Log.i("test", planets.get(position).getImage());
         Glide.with(this.context).load(planets.get(position).getImage()).into(viewHolder.imageView);
     }
 
