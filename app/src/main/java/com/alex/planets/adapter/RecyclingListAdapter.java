@@ -68,7 +68,11 @@ public class RecyclingListAdapter extends RecyclerView.Adapter<RecyclingListAdap
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return planets.size();
+        if (!(planets == null)) {
+            return planets.size();
+        } else {
+            return 0;
+        }
     }
 }
 
