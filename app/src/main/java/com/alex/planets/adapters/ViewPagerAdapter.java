@@ -7,10 +7,9 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.alex.planets.fragments.PlanetFragment;
-import com.alex.planets.fragments.SatelitteFragment;
 
-public class ViewPagerAdapterPlanets extends FragmentStateAdapter {
-    public ViewPagerAdapterPlanets(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+public class ViewPagerAdapter extends FragmentStateAdapter {
+    public ViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
     }
 
@@ -22,10 +21,10 @@ public class ViewPagerAdapterPlanets extends FragmentStateAdapter {
 
         switch (position) {
             case 0:
-                fragment = PlanetFragment.newInstance();
+                fragment = new PlanetFragment(true);
                 break;
             case 1:
-                fragment = SatelitteFragment.newInstance();
+                fragment = new PlanetFragment(false);
                 break;
             default:
                 return null;

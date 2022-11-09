@@ -25,7 +25,7 @@ public class Planet implements Serializable {
     String image;
 
     //    AroundPlanet aroundPlanet;
-//    List<Moons> moons;
+    //    List<Moons> moons;
 
     public void setId(int id) {
         this.id = id;
