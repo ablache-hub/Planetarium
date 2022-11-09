@@ -1,7 +1,6 @@
-package com.alex.planets.adapter;
+package com.alex.planets.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alex.planets.models.Planet;
 import com.alex.planets.R;
+import com.alex.planets.models.Planet;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class RecyclingListAdapter extends RecyclerView.Adapter<RecyclingListAdapter.ViewHolder> {
+public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingListPlanetAdapter.ViewHolder> {
 
     private final List<Planet> planets;
     private final Context context;
 
-    public RecyclingListAdapter(List<Planet> planets, Context context) {
+    public RecyclingListPlanetAdapter(List<Planet> planets, Context context) {
         this.planets = planets;
         this.context = context;
     }

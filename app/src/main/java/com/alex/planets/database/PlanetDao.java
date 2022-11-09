@@ -18,8 +18,8 @@ public interface PlanetDao {
     @Query("SELECT * FROM planets")
     LiveData<List<Planet>> getAll();
 
-    @Query("SELECT * FROM planets WHERE isPlanet=1")
-    List<Planet> getIsPlanet();
+    @Query("SELECT * FROM planets WHERE isPlanet= :planetOrNot")
+    LiveData<List<Planet>> getIsPlanet(Boolean planetOrNot);
 
     @Insert
     void insert(Planet planet);

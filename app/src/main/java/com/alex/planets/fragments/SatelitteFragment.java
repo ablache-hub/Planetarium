@@ -1,17 +1,20 @@
 package com.alex.planets.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.alex.planets.R;
 
+public class SatelitteFragment extends Fragment {
 
-public class SatelliteFragment extends Fragment {
+    public static SatelitteFragment newInstance() {
+        return new SatelitteFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
