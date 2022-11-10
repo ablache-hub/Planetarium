@@ -34,7 +34,7 @@ public class Utils {
         return jsonInString;
     }
 
-    public static List<Planet> getPlanetOrNotList(List<Planet> planets, Boolean isPlanet) {
+/*    public static List<Planet> getPlanetOrNotList(List<Planet> planets, Boolean isPlanet) {
         List<Planet> newList = new ArrayList<>();
 
         for (Planet planet : planets) {
@@ -43,7 +43,7 @@ public class Utils {
             }
         }
         return newList;
-    }
+    }*/
 
     public static void savePlanet(List<Planet> planets, Context context) {
         class SavePlanet extends AsyncTask<Void, Void, Void> {
@@ -56,6 +56,8 @@ public class Utils {
                     newPlanet.setName(planet.getName());
                     newPlanet.setIsPlanet(planet.isPlanet());
                     newPlanet.setImage(planet.getImage());
+                    newPlanet.setAroundPlanet(planet.getAroundPlanet());
+                    newPlanet.setMoons(planet.getMoons());
 
                     DatabaseClient.
                             getInstance(context.getApplicationContext()).
