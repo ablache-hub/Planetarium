@@ -25,15 +25,19 @@ public class MainActivity extends AppCompatActivity {
 
     public TabLayout tabLayoutPlanets;
     public ViewPager2 viewPagerFactors;
+    public PlanetDao planetDao;
+    public LiveData<List<Planet>> planetList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PlanetDao planetDao = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().planetDao();
-        LiveData<List<Planet>> planetList = planetDao.getAll();
 
+        planetDao = DatabaseClient.getInstance(getApplicationContext()).getAppDatabase().planetDao();
+        planetList = planetDao.getAll();
+
+        // If planet list empty in DB, fill it with json data
         planetList.observe(this, new Observer<List<Planet>>() {
             @Override
             public void onChanged(List<Planet> planets) {
@@ -49,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // Tab layout construction
         tabLayoutPlanets = findViewById(R.id.tabLayout);
         viewPagerFactors = findViewById(R.id.viewPager);
 

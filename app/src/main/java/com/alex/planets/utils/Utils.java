@@ -34,17 +34,6 @@ public class Utils {
         return jsonInString;
     }
 
-/*    public static List<Planet> getPlanetOrNotList(List<Planet> planets, Boolean isPlanet) {
-        List<Planet> newList = new ArrayList<>();
-
-        for (Planet planet : planets) {
-            if (planet.isPlanet() == isPlanet) {
-                newList.add(planet);
-            }
-        }
-        return newList;
-    }*/
-
     public static void savePlanet(List<Planet> planets, Context context) {
         class SavePlanet extends AsyncTask<Void, Void, Void> {
 
