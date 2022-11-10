@@ -1,6 +1,7 @@
-package com.alex.planets.adapter;
+package com.alex.planets.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,23 +10,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alex.planets.MainActivity;
-import com.alex.planets.Planet;
+import com.alex.planets.DetailsActivity;
 import com.alex.planets.R;
+import com.alex.planets.database.DatabaseClient;
+import com.alex.planets.database.PlanetDao;
+import com.alex.planets.models.Planet;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingListPlanetAdapter.ViewHolder> {
 
-    private List<Planet> planets;
-    private Context context;
+    private final List<Planet> planets;
+    private final Context context;
+    private final LifecycleOwner viewLifecycleOwner;
+    private PlanetDao planetDao;
 
-    public CustomAdapter(List<Planet> planets, Context context) {
+    public RecyclingListPlanetAdapter(List<Planet> planets, Context context, LifecycleOwner viewLifecycleOwner) {
         this.planets = planets;
         this.context = context;
+        this.viewLifecycleOwner = viewLifecycleOwner;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -35,9 +44,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
 
-            textView = (TextView) view.findViewById(R.id.textView);
+            textView = (TextView) view.findViewById(R.id.tvCard);
             imageView = view.findViewById(R.id.imageView);
         }
 
@@ -64,14 +72,34 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.textView.setText(planets.get(position).getName());
-        Log.i("test", planets.get(position).getImage());
         Glide.with(this.context).load(planets.get(position).getImage()).into(viewHolder.imageView);
+        planetDao = DatabaseClient.getInstance(context).getAppDatabase().planetDao();
+
+
+        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View cardView) {
+                TextView cardText = cardView.findViewById(R.id.tvCard);
+                String clickedPlanetName = cardText.getText().toString();
+
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("planetName", clickedPlanetName);
+                context.startActivity(intent);
+//                Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+//                Log.v("test", ""+test.getName());
+
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return planets.size();
+        if (!(planets == null)) {
+            return planets.size();
+        } else {
+            return 0;
+        }
     }
 }
 
