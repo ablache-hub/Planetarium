@@ -21,6 +21,9 @@ public interface PlanetDao {
     @Query("SELECT * FROM planets WHERE isPlanet= :planetOrNot ORDER BY searchId")
     LiveData<List<Planet>> getIsPlanet(Boolean planetOrNot);
 
+    @Query("SELECT * FROM planets WHERE name= :name")
+    LiveData<Planet> getPlanet(String name);
+
     @Insert
     void insert(Planet planet);
 

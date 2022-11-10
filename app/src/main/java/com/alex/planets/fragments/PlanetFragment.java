@@ -44,7 +44,7 @@ public class PlanetFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rvPlanets);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new RecyclingListPlanetAdapter(null, getContext());
+        adapter = new RecyclingListPlanetAdapter(null, getContext(), getViewLifecycleOwner());
         recyclerView.setAdapter(adapter);
 
         PlanetDao planetDao = DatabaseClient.getInstance(getContext()).getAppDatabase().planetDao();
@@ -53,8 +53,8 @@ public class PlanetFragment extends Fragment {
         planetList.observe(getViewLifecycleOwner(), new Observer<List<Planet>>() {
             @Override
             public void onChanged(List<Planet> planets) {
-                if(!planets.isEmpty()) {
-                    adapter = new RecyclingListPlanetAdapter(planets, getContext());
+                if (!planets.isEmpty()) {
+                    adapter = new RecyclingListPlanetAdapter(planets, getContext(), getViewLifecycleOwner());
                     recyclerView.setAdapter(adapter);
                 }
             }
