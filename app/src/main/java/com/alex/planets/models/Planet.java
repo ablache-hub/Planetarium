@@ -3,7 +3,6 @@ package com.alex.planets.models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
 import androidx.room.TypeConverters;
 
 import com.alex.planets.utils.AroundPlanetConverter;
@@ -18,8 +17,8 @@ public class Planet implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "searchId")
-    String searchId;
+    @ColumnInfo(name = "englishName")
+    String englishName;
 
     @ColumnInfo(name = "name")
     String name;
@@ -48,8 +47,8 @@ public class Planet implements Serializable {
         this.moons = moons;
     }
 
-    public void setSearchId(String searchId) {
-        this.searchId = searchId;
+    public void setEnglishName(String englishName) {
+        this.englishName = englishName;
     }
 
     public void setName(String name) {
@@ -76,8 +75,8 @@ public class Planet implements Serializable {
         return isPlanet;
     }
 
-    public String getSearchId() {
-        return searchId;
+    public String getEnglishName() {
+        return englishName;
     }
 
     public AroundPlanet getAroundPlanet() {
