@@ -7,4 +7,7 @@ public class Moons {
         this.moon = moon;
     }
 
+    public String getMoon() {
+        return moon;
+    }
 }

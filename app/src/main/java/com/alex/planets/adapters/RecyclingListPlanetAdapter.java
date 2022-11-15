@@ -21,8 +21,11 @@ import com.alex.planets.database.DatabaseClient;
 import com.alex.planets.database.PlanetDao;
 import com.alex.planets.models.Planet;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingListPlanetAdapter.ViewHolder> {
 
@@ -40,13 +43,13 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // Déclarer les elements de la card
         private final TextView textView;
-        private final ImageView imageView;
+        private final CircleImageView imageView;
 
         public ViewHolder(View view) {
             super(view);
 
             textView = (TextView) view.findViewById(R.id.tvCard);
-            imageView = view.findViewById(R.id.imageView);
+            imageView = view.findViewById(R.id.profile_image);
         }
 
         public TextView getTextView() {

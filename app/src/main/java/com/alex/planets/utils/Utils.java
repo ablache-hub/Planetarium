@@ -3,16 +3,12 @@ package com.alex.planets.utils;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.alex.planets.R;
 import com.alex.planets.database.DatabaseClient;
 import com.alex.planets.models.Planet;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
@@ -41,7 +37,7 @@ public class Utils {
             protected Void doInBackground(Void... voids) {
                 for (Planet planet : planets) {
                     Planet newPlanet = new Planet();
-                    newPlanet.setSearchId(planet.getSearchId());
+                    newPlanet.setEnglishName(planet.getEnglishName());
                     newPlanet.setName(planet.getName());
                     newPlanet.setIsPlanet(planet.isPlanet());
                     newPlanet.setImage(planet.getImage());
