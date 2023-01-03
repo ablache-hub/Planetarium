@@ -33,17 +33,17 @@ public class Planet implements Serializable {
     public AroundPlanet aroundPlanet;
 
     @TypeConverters(MoonsConverter.class)
-    List<Moons> moons;
+    List<Moon> moons;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public List<Moons> getMoons() {
+    public List<Moon> getMoons() {
         return moons;
     }
 
-    public void setMoons(List<Moons> moons) {
+    public void setMoons(List<Moon> moons) {
         this.moons = moons;
     }
 

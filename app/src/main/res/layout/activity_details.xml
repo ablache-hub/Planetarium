@@ -7,47 +7,34 @@
     tools:context=".DetailsActivity">
 
     <TextView
-        android:id="@+id/textViewDetails1"
+        android:id="@+id/planetNameDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="164dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewDetails2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDetails1" />
-
-    <TextView
         android:id="@+id/textViewDetails3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDetails2" />
+        app:layout_constraintTop_toBottomOf="@+id/planetNameDetails" />
 
     <TextView
-        android:id="@+id/textViewDetails4"
+        android:id="@+id/subtitleDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDetails3" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetails3"
+        tools:text="test" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/detailsImage"
@@ -61,4 +48,12 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/detailsList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/subtitleDetails" />
 </androidx.constraintlayout.widget.ConstraintLayout>
