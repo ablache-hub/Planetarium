@@ -18,7 +18,7 @@ public interface PlanetDao {
     @Query("SELECT * FROM planets")
     LiveData<List<Planet>> getAll();
 
-    @Query("SELECT * FROM planets WHERE isPlanet= :planetOrNot ORDER BY englishName")
+    @Query("SELECT * FROM planets WHERE isPlanet= :planetOrNot ORDER BY name")
     LiveData<List<Planet>> getIsPlanet(Boolean planetOrNot);
 
     @Query("SELECT * FROM planets WHERE name= :name")
