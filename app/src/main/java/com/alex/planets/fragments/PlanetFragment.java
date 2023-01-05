@@ -28,6 +28,7 @@ public class PlanetFragment extends Fragment {
     private RecyclingListPlanetAdapter adapter;
     private final Boolean isPlanet;
 
+    // Constructor
     public PlanetFragment(Boolean isPlanet) {
         this.isPlanet = isPlanet;
     }

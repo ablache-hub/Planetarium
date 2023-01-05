@@ -38,7 +38,7 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // Déclarer les elements de la card
+        // Declare card elements
         private final TextView textView;
         private final CircleImageView imageView;
 
@@ -57,14 +57,9 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
                     Intent intent = new Intent(view.getContext(), DetailsActivity.class);
                     intent.putExtra("planetName", clickedPlanetName);
                     view.getContext().startActivity(intent);
-//                Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-//                Log.v("test", ""+test.getName());
-
                 }
             });
         }
-
-
 
         public TextView getTextView() {
             return textView;
@@ -90,22 +85,6 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
         // contents of the view with that element
         viewHolder.textView.setText(planets.get(position).getName());
         Glide.with(this.context).load(planets.get(position).getImage()).into(viewHolder.imageView);
-
-
-/*        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View cardView) {
-                TextView cardText = cardView.findViewById(R.id.tvCard);
-                String clickedPlanetName = cardText.getText().toString();
-
-                Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("planetName", clickedPlanetName);
-                context.startActivity(intent);
-//                Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-//                Log.v("test", ""+test.getName());
-
-            }
-        });*/
     }
 
     // Return the size of your dataset (invoked by the layout manager)
