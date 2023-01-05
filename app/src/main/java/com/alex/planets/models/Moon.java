@@ -1,9 +1,9 @@
 package com.alex.planets.models;
 
-public class Moons {
+public class Moon {
     String moon;
 
-    public Moons(String moon) {
+    public Moon(String moon) {
         this.moon = moon;
     }
 

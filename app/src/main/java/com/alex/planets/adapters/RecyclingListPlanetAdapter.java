@@ -31,13 +31,10 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
 
     private final List<Planet> planets;
     private final Context context;
-    private final LifecycleOwner viewLifecycleOwner;
-    private PlanetDao planetDao;
 
     public RecyclingListPlanetAdapter(List<Planet> planets, Context context, LifecycleOwner viewLifecycleOwner) {
         this.planets = planets;
         this.context = context;
-        this.viewLifecycleOwner = viewLifecycleOwner;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -50,7 +47,24 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
 
             textView = (TextView) view.findViewById(R.id.tvCard);
             imageView = view.findViewById(R.id.profile_image);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View cardView) {
+                    TextView cardText = cardView.findViewById(R.id.tvCard);
+                    String clickedPlanetName = cardText.getText().toString();
+
+                    Intent intent = new Intent(view.getContext(), DetailsActivity.class);
+                    intent.putExtra("planetName", clickedPlanetName);
+                    view.getContext().startActivity(intent);
+//                Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+//                Log.v("test", ""+test.getName());
+
+                }
+            });
         }
+
+
 
         public TextView getTextView() {
             return textView;
@@ -76,10 +90,9 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
         // contents of the view with that element
         viewHolder.textView.setText(planets.get(position).getName());
         Glide.with(this.context).load(planets.get(position).getImage()).into(viewHolder.imageView);
-        planetDao = DatabaseClient.getInstance(context).getAppDatabase().planetDao();
 
 
-        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
+/*        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View cardView) {
                 TextView cardText = cardView.findViewById(R.id.tvCard);
@@ -92,7 +105,7 @@ public class RecyclingListPlanetAdapter extends RecyclerView.Adapter<RecyclingLi
 //                Log.v("test", ""+test.getName());
 
             }
-        });
+        });*/
     }
 
     // Return the size of your dataset (invoked by the layout manager)

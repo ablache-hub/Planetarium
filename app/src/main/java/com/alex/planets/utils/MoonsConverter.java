@@ -2,7 +2,7 @@ package com.alex.planets.utils;
 
 import androidx.room.TypeConverter;
 
-import com.alex.planets.models.Moons;
+import com.alex.planets.models.Moon;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -14,18 +14,18 @@ public class MoonsConverter {
     static Gson gson = new Gson();
 
     @TypeConverter
-    public static List<Moons> stringToSomeObjectList(String data) {
+    public static List<Moon> stringToSomeObjectList(String data) {
         if (data == null) {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<Moons>>() {}.getType();
+        Type listType = new TypeToken<List<Moon>>() {}.getType();
 
         return gson.fromJson(data, listType);
     }
 
     @TypeConverter
-    public static String someObjectListToString(List<Moons> someObjects) {
+    public static String someObjectListToString(List<Moon> someObjects) {
         return gson.toJson(someObjects);
     }
 }
