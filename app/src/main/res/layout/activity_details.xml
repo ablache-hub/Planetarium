@@ -4,36 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1B1A3B"
     tools:context=".DetailsActivity">
 
     <TextView
         android:id="@+id/planetNameDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="24dp"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewDetails3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/planetNameDetails" />
+        app:layout_constraintTop_toBottomOf="@+id/detailsImage"
+        tools:text="Name" />
 
     <TextView
         android:id="@+id/subtitleDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/planetNameDetails"
+        tools:text="Subtitle" />
+
+    <TextView
+        android:id="@+id/aroundPlanetNameDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDetails3"
+        app:layout_constraintTop_toBottomOf="@+id/subtitleDetails"
         tools:text="test" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -51,9 +57,10 @@
 
     <ListView
         android:id="@+id/detailsList"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="0dp"
+        android:cacheColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/subtitleDetails" />
+        app:layout_constraintTop_toTopOf="@+id/aroundPlanetNameDetails" />
 </androidx.constraintlayout.widget.ConstraintLayout>
